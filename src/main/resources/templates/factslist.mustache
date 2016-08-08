@@ -1,0 +1,22 @@
+<form method='get' >
+    <input type='date' name='from' value="{{from}}">
+    <input type='date' name='to' value="{{to}}">
+    <input type="text" name="user" value="{{user}}">
+    <button>get!</button>
+</form>
+<table style="width:100%">
+    <tr>
+        <th>id</th>
+        <th>date</th>
+        <th>account</th>
+        <th>статья</th>
+        <th>сумма</th>
+        <th>коммент</th>
+    </tr>
+    {{#facts}}
+    <tr>
+        <td>{{id}}</td><td>{{date}}</td><td>{{account}}</td><td>{{subconto}}</td><td>{{amount}}</td><td>{{comment}}</td>
+    </tr>
+    {{/facts}}
+
+</table>
