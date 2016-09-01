@@ -32,7 +32,7 @@ public class KonServer {
             staticFiles.location("/public");
         }
 
-        ReadTsvFacts.loadFacts(factsDao);
+        ReadTsvFacts.loadFactsFromTSVFile(factsDao);
 
         get("/hello", (req, res) -> "Hello World");
         get("/fact", getRoute());

@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +61,7 @@ public class FactDaoHashMapTest {
     @Before
     public void setUp() throws Exception {
         factsDao=new FactDaoHashMap();
-        ReadTsvFacts.loadFacts(factsDao);
+        ReadTsvFacts.loadFactsFromTSVFile(factsDao);
     }
 
     @After
