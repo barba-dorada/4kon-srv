@@ -5,8 +5,8 @@
 import dao.FactDaoHashMap;
 import dao.FactsDaoInt;
 import dao.ReadTsvFacts;
-import model.Fact;
 import org.jetbrains.annotations.NotNull;
+import ru.kon.db.tables.pojos.Fact;
 import spark.*;
 import spark.template.mustache.MustacheTemplateEngine;
 

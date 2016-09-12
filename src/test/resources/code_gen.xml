@@ -31,9 +31,14 @@
             Excludes match before includes -->
             <excludes></excludes>
         </database>
+
+        <generate>
+            <daos>true</daos>
+        </generate>
+
         <target>
             <!-- The destination package of your generated classes (within the destination directory) -->
-            <packageName>test.generated</packageName>
+            <packageName>ru.kon.db</packageName>
             <!-- The destination directory of your generated classes. Using Maven directory layout here -->
             <directory>./src/main/java</directory>
         </target>

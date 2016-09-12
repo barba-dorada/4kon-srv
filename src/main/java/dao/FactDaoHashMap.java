@@ -1,6 +1,7 @@
 package dao;
 
-import model.Fact;
+
+import ru.kon.db.tables.pojos.Fact;
 
 import java.util.*;
 

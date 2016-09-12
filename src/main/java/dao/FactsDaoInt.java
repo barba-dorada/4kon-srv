@@ -1,6 +1,8 @@
 package dao;
 
-import model.Fact;
+//import model.Fact;
+
+import ru.kon.db.tables.pojos.Fact;
 
 import java.util.Date;
 import java.util.List;
