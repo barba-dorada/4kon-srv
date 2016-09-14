@@ -4,6 +4,7 @@ import org.jooq.DSLContext;
 import ru.kon.db.tables.pojos.Fact;
 import ru.kon.db.tables.records.FactRecord;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class FactDaoJOOQ implements FactsDaoInt {
     }
 
     @Override
-    public List<Fact> list(String user, Date from, Date to) {
+    public List<Fact> list(String user, LocalDateTime from, LocalDateTime to) {
         return null;
     }
 

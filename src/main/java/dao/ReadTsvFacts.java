@@ -21,7 +21,7 @@ import java.util.function.Function;
 public class ReadTsvFacts {
 
 
-    public static void loadFactsFromTSVFile(FactsDaoInt factsDao) throws IOException, ParseException {
+ /*   public static void loadFactsFromTSVFile(FactsDaoInt factsDao) throws IOException, ParseException {
         Path path = Paths.get("src\\main\\resources\\db\\facts.tsv");
         List<String> lines = Files.readAllLines(path);
         String names = lines.remove(0);
@@ -47,7 +47,7 @@ public class ReadTsvFacts {
 
             //System.out.println(fact);
         }
-    }
+    }*/
 
     public static void loadFactsFromTSVFile2(Consumer<String[]> consumer) throws IOException, ParseException {
         Path path = Paths.get("src\\main\\resources\\db\\facts.tsv");

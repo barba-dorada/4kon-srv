@@ -1,9 +1,9 @@
 package dao;
 
-import model.Fact;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ru.kon.db.tables.pojos.Fact;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,7 +34,7 @@ public class FactDaoHashMapTest {
 
     @Test
     public void test(){
-        Fact f = factsDao.load(1);
+        ru.kon.db.tables.pojos.Fact f = factsDao.load(1);
         assertEquals(f.getAccount(),"кошелек.В");
     }
 
@@ -43,7 +43,7 @@ public class FactDaoHashMapTest {
 //01.07.2016
         SimpleDateFormat sdf =new SimpleDateFormat("dd.MM.yyyy");
         Date date = sdf.parse("01.07.2016");
-        List<Fact> list = factsDao.list("Л", date, date);
+        List<ru.kon.db.tables.pojos.Fact> list = factsDao.list("Л", date, date);
         assertEquals(6,list.size());
     }
 

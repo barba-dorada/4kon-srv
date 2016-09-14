@@ -3,6 +3,7 @@ package dao;
 
 import ru.kon.db.tables.pojos.Fact;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -13,7 +14,7 @@ public class FactDaoHashMap implements FactsDaoInt {
     Integer counter = 0;
 
     @Override
-    public List<Fact> list(String user, Date from, Date to) {
+    public List<Fact> list(String user, LocalDateTime from, LocalDateTime to) {
         List<Fact> result = new ArrayList<>();
         for (Fact fact : map.values()) {
             if (!user.equalsIgnoreCase(fact.getUser())) continue;
@@ -24,7 +25,7 @@ public class FactDaoHashMap implements FactsDaoInt {
         return result;
     }
 
-    boolean inDiapazon(Date date, Date from, Date to) {
+    boolean inDiapazon(LocalDateTime date, LocalDateTime from, LocalDateTime to) {
         return date.compareTo(from) >= 0 && date.compareTo(to) <= 0;
     }
 

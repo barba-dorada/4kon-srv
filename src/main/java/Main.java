@@ -17,6 +17,9 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //import static test.generated.Tables.FACT;
 //import static test.generated.Tables.USER;
@@ -35,17 +38,14 @@ public class Main {
             FactsDaoInt factDao = new FactDaoJOOQ(create);
             AccountDaoJOOQ accountDao = new AccountDaoJOOQ(create);
 
-            SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            //SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
             ReadTsvFacts.loadFactsFromTSVFile2(s->{
                 Fact fact = new Fact();
                 fact.setId(null);
                 fact.setUser(s[0]);
-                try {
-                    fact.setDate(new Date(df.parse(s[1]).getTime()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                fact.setDate(LocalDate.parse(s[1], df).atStartOfDay());
                 String account = s[2];
                 fact.setAccountId(accountDao.findIdByName(account));
                 fact.setAccount(account);

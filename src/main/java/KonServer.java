@@ -13,6 +13,8 @@ import spark.template.mustache.MustacheTemplateEngine;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,7 @@ public class KonServer {
             staticFiles.location("/public");
         }
 
-        ReadTsvFacts.loadFactsFromTSVFile(factsDao);
+        //ReadTsvFacts.loadFactsFromTSVFile(factsDao);
 
         get("/hello", (req, res) -> "Hello World");
         get("/fact", getRoute());
@@ -52,19 +54,15 @@ public class KonServer {
         String from = req.params("from");
         String to = req.params("to");
 
-        map.put("user",user);
-        map.put("from",from);
-        map.put("to",to);
+        map.put("user", user);
+        map.put("from", from);
+        map.put("to", to);
 
-
-        Date fromDate = null;
-        Date toDate = null;
-        try {
-            fromDate = sdf.parse(from);
-            toDate = sdf.parse(to);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDateTime fromDate = null;
+        LocalDateTime toDate = null;
+        fromDate = LocalDateTime.parse(from, df);
+        toDate = LocalDateTime.parse(to, df);
         List<Fact> list = factsDao.list(user, fromDate, toDate);
         map.put("facts", list);
 
@@ -75,13 +73,10 @@ public class KonServer {
     @NotNull
     static TemplateViewRoute getTemplateViewRoute() {
         Map map = new HashMap();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        Date date = null;
-        try {
-            date = sdf.parse("01.07.2016");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        //SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDateTime date = null;
+        date = LocalDateTime.parse("01.07.2016", df);
         List<Fact> list = factsDao.list("Л", date, date);
         map.put("facts", list);
 
@@ -96,8 +91,8 @@ public class KonServer {
         return  (rq, rs) -> new ModelAndView(map, "factslist.mustache");*/
 
         return (req, res) -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-            Date date = sdf.parse("01.07.2016");
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            LocalDateTime date =LocalDateTime.parse("01.07.2016",df);
             List<Fact> list = factsDao.list("Л", date, date);
             Map map = new HashMap();
             map.put("facts", list);
